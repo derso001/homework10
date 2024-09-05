@@ -2,13 +2,14 @@
 name = "homework10"
 version = "0.1.0"
 description = ""
-package-mode = false
 authors = ["Zdorovets Boris <bor.zdorovets28@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
 django = "^5.1.1"
+psycopg2 = "^2.9.9"
+pillow = "^10.4.0"
 
 
 [build-system]
