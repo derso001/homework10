@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class Author(models.Model):
     fullname = models.CharField(max_length=100)
-    born_date = models.DateField()  # Використання DateField для дати без часу
+    born_date = models.CharField()
     born_location = models.CharField(max_length=100)
     description = models.TextField(blank=True)
 

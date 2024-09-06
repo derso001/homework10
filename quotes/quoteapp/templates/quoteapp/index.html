@@ -9,9 +9,16 @@
 
 <body>
     <main class="container">
+        <div class="col-md-8">
+            <h1>
+                <a href="/" style="text-decoration: none">Quotes to Scrape</a>
+            </h1>
+        </div>
         <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
             {% if user.is_authenticated %}
+                
             <ul>
+                <li><a href="{% url 'quoteapp:quote' %}" role="button">Add quote</a></li>
                 <li>Welcome <b>{{ user.username }}!</b></li>
                 <li><a href="{% url 'users:profile' %}" role="button">Profile</a></li>
                 <li><a href="{% url 'users:logout' %}" role="button">Logout</a></li>
@@ -24,8 +31,24 @@
             {% endif %}
         </nav>
 
-
-
+        <div>
+            {% for quote in quotes %}
+            <div>
+                <span>{{ quote.quote }}</span>
+                <span>
+                    by
+                    <small>{{ quote.author }}</small>
+                    <a href="">(about)</a>
+                </span>
+                <div>
+                    Tags:
+                    {% for tag in quote.quote %}
+                    <a href="">{{ tag.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </main>
 </body>
 
