@@ -5,20 +5,14 @@
 <form method="POST" action="{% url 'quoteapp:quote' %}">
     {% csrf_token %}
     <div style="padding: 10px">
-        <label> Note name:
-            {{ form.name }}
-        </label>
-        <span>{{ form.errors.name }}</span>
-    </div>
-    <div style="padding: 10px">
         <label> Quote description:
-            {{ form.description }}
+            {{ form.quote }}
         </label>
         <span>{{ form.errors.description }}</span>
     </div>
     <div style="padding: 10px">
         <label> Select Autors:
-            <select name="tags" multiple="multiple" required>
+            <select name="author" multiple="multiple" required>
                 {% for author in authors %}
                 <option value="{{author.fullname}}">{{author.fullname}}</option>
                 {% endfor %}

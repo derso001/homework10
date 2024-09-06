@@ -23,7 +23,7 @@ class Tag(models.Model):
 
 class Quote(models.Model):
     quote = models.TextField()
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, default=60)
     tags = models.ManyToManyField(Tag)
 
     def __str__(self):

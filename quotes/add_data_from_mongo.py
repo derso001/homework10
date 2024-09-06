@@ -25,16 +25,16 @@ for mongo_author in MongoAuthor.objects:
     )
     print(f"add {mongo_author.fullname}")
 
-for mongo_quote in MongoQuote.objects:
-    sql_author = SQLAuthor.objects.get(fullname=mongo_quote.author.fullname)
-    if not SQLQuote.objects.filter(quote=mongo_quote.quote, author=sql_author).exists():
-        sql_quote = SQLQuote.objects.create(
-            quote=mongo_quote.quote,
-            author=sql_author,
-        )
-        for tag_name in mongo_quote.tags:
-            tag, created = SQLTag.objects.get_or_create(name=tag_name)
-            sql_quote.tags.add(tag)
-            print(1)
+# for mongo_quote in MongoQuote.objects:
+#     sql_author = SQLAuthor.objects.get(fullname=mongo_quote.author.fullname)
+#     if not SQLQuote.objects.filter(quote=mongo_quote.quote, author=sql_author).exists():
+#         sql_quote = SQLQuote.objects.create(
+#             quote=mongo_quote.quote,
+#             author=sql_author,
+#         )
+#         for tag_name in mongo_quote.tags:
+#             tag, created = SQLTag.objects.get_or_create(name=tag_name)
+#             sql_quote.tags.add(tag)
+#             print(1)
     
 
