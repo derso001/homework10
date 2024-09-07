@@ -8,4 +8,5 @@ urlpatterns = [
     path('quote/', views.quote, name='quote'),
     path('tag/', views.tag, name='tag'),
     path('author/', views.author, name='author'),
+    path('<str:author>', views.detail_author, name='detail_author')
 ]

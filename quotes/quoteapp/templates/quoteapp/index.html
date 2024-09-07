@@ -40,11 +40,11 @@
                 <span>
                     by
                     <small>{{ quote.author }}</small>
-                    <a href="">(about)</a>
+                    <a href="{% url 'quoteapp:detail_author' quote.author %}">(about)</a>
                 </span>
                 <div>
                     Tags:
-                    {% for tag in quote.quote %}
+                    {% for tag in quote.tags.all %}
                     <a href="">{{ tag.name }}</a>
                     {% endfor %}
                 </div>

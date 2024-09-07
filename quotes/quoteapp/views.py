@@ -1,13 +1,17 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Quote, Tag, Author
 from .forms import QuoteForm, AuthorForm, TagForm
 
 def main(request):
-    quotes =  Quote.objects.all()[0:6]
+    quotes =  Quote.objects.all()
     context = {"quotes":quotes}
 
     return render(request, 'quoteapp/index.html', context)
+
+def detail_author(request, author):
+    author_inf = get_object_or_404(Author, fullname=author)
+    return render(request, 'quoteapp/authorinfo.html', {"author": author_inf})
 
 @login_required
 def quote(request):
@@ -38,7 +42,7 @@ def quote(request):
 
     return render(request, 'quoteapp/quote.html', {"tags": tags, "authors":authors, 'form': QuoteForm()})
 
-
+@login_required
 def tag(request):
     if request.method == 'POST':
         form = TagForm(request.POST)
@@ -50,13 +54,15 @@ def tag(request):
 
     return render(request, 'quoteapp/tag.html', {'form': TagForm()})
 
+@login_required
 def author(request):
     if request.method == 'POST':
         form = AuthorForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect(to='quoteapp:main')
-        else:
-            return render(request, 'quoteapp/author.html', {'form': form})
+            if not Author.objects.filter(fullname=form.cleaned_data['fullname']).exists():
+                form.save()
+                return redirect(to='quoteapp:main')
+            else:
+                return render(request, 'quoteapp/author.html', {'form': form})
 
     return render(request, 'quoteapp/author.html', {'form': AuthorForm()})
