@@ -13,17 +13,17 @@ from mongo_models import Author as MongoAuthor, Quote as MongoQuote
 uri = "mongodb+srv://boris:test123@cluster0.1lmlx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 connect(host=uri, ssl=True)
 
-# for mongo_author in MongoAuthor.objects:
+for mongo_author in MongoAuthor.objects:
     
-#     sql_author, created = SQLAuthor.objects.get_or_create(
-#         fullname=mongo_author.fullname,
-#         defaults={
-#             'born_date': mongo_author.born_date,
-#             'born_location': mongo_author.born_location,
-#             'description': mongo_author.description,
-#         }
-#     )
-#     print(f"add {mongo_author.fullname}")
+    sql_author, created = SQLAuthor.objects.get_or_create(
+        fullname=mongo_author.fullname,
+        defaults={
+            'born_date': mongo_author.born_date,
+            'born_location': mongo_author.born_location,
+            'description': mongo_author.description,
+        }
+    )
+    print(f"add {mongo_author.fullname}")
 
 for mongo_quote in MongoQuote.objects:
     sql_author = SQLAuthor.objects.get(fullname=mongo_quote.author.fullname)
