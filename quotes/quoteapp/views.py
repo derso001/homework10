@@ -9,6 +9,13 @@ def main(request):
 
     return render(request, 'quoteapp/index.html', context)
 
+def quotes_by_tag(request, tag_name):
+    tag = get_object_or_404(Tag, name=tag_name)
+    quotes = Quote.objects.filter(tags=tag)
+    context = {"quotes": quotes, "tag": tag}
+    
+    return render(request, 'quoteapp/index.html', context)
+
 def detail_author(request, author):
     author_inf = get_object_or_404(Author, fullname=author)
     return render(request, 'quoteapp/authorinfo.html', {"author": author_inf})
