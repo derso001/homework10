@@ -7,4 +7,5 @@ urlpatterns = [
     path('', views.main, name='main'),
     path('quote/', views.quote, name='quote'),
     path('tag/', views.tag, name='tag'),
+    path('author/', views.author, name='author'),
 ]

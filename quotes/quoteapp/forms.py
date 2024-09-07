@@ -9,7 +9,8 @@ class AuthorForm(ModelForm):
     born_location = CharField(min_length=3, max_length=25, widget=TextInput())
     description = CharField(min_length=3, widget=TextInput())
     class Meta:
-        fields = ['name', 'born_date', 'born_location', 'description']
+        model = Author
+        fields = ['fullname', 'born_date', 'born_location', 'description']
 
 
 class QuoteForm(ModelForm):
